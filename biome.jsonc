@@ -1,0 +1,74 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": {
+    "useIgnoreFile": true,
+    "clientKind": "git",
+    "defaultBranch": "main",
+    "enabled": true
+  },
+  "files": {
+    "includes": ["**", "!**/node_modules", "!!**/docs", "!!**/dist", "!!tests/test-pages/preact.js"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "security": {
+        "recommended": true
+      },
+      "a11y": "error",
+      "complexity": {
+        "recommended": true,
+        // https://github.com/biomejs/biome/discussions/7404
+        "useLiteralKeys": "off"
+      },
+      "correctness": {
+        "recommended": true
+        // "useImportExtensions": "error"
+      },
+      "performance": {
+        "recommended": true,
+        "noReExportAll": "error"
+      },
+      "style": {
+        "recommended": true,
+        "useImportType": {
+          "level": "error",
+          "options": {
+            "style": "separatedType"
+          }
+        },
+        "useNodejsImportProtocol": {
+          "level": "error",
+          "fix": "unsafe"
+        }
+      },
+      "suspicious": {
+        "recommended": true,
+        "noImportCycles": "error",
+        // turn on when we are ready to use all new OTel semantic conventions
+        "noDeprecatedImports": "warn"
+      },
+      "nursery": {
+        "recommended": true
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
+}
